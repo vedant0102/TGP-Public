@@ -1,0 +1,61 @@
+div.post-content-body p {
+font-family: 'Merriweather', serif;
+font-size: 1rem;
+color: #000;
+}
+
+div.post-content-body span {
+font-family: 'Merriweather', serif;
+font-size: 1rem;
+color: #000;
+}
+
+div.post-content-body blockquote {
+font-family: 'Satisfy', cursive;
+font-size: 1.4rem;
+color: #888;
+}
+
+div.post-content-body h1 {
+font-family: 'Open Sans', sans-serif;
+font-size: 1.8rem;
+font-weight: bold;
+color: #000;
+}
+
+div.post-content-body a {
+font-family: 'Merriweather', serif;
+font-size: 1rem;
+text-decoration: underline;
+text-decoration-color: #35d0ba;
+color: #000;
+}
+div.post-content-body a:hover {
+font-family: 'Merriweather', serif;
+font-size: 1rem;
+text-decoration: none;
+color: #000;
+}
+
+/* For laptops */
+@media (min-width: 992px) {
+    div.post-content-body p {
+    font-size: 1.2rem;
+    }
+    div.post-content-body span {
+    font-size: 1.2rem;
+    }
+    div.post-content-body a {
+    font-size: 1.2rem;
+    }
+    div.post-content-body a:hover {
+    font-size: 1.2rem;
+    }
+    div.post-content-body blockquote {
+    font-family: 'Satisfy', cursive;
+    font-size: 1.8rem;
+    }
+    div.post-content-body h1{
+    font-size: 2.2rem;
+    }
+}

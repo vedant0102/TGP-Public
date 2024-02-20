@@ -1,0 +1,87 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ search_string }} | The Grey Planet{% endblock %}
+{% block css %}
+{% load static %}
+  <link rel="stylesheet" href="{% static 'blog/css/search.css' %}">
+{% endblock %}
+{% block content %}
+
+{% load static %}
+  <div class="text-center results pt-4" style="background-image: url({% static 'blog/images/search.jpg' %});">
+
+      <span>
+        <h2 class="search-head">"{{ search_string }}"</h2>
+
+    </span>
+    <h5 class="search-p"><img src="{% static 'blog/images/searchicon.png' %}" class="s-img" height="18px" width="18px" alt="">Showing Search Results</h5>
+
+  </div>
+  </div>
+<!-- Error Message -->
+{% if not blogs %}
+<div class="jumbotron" style="margin: 0px;">
+    <div class="container text-center">
+      <hr class="tips-row">
+      <span><img src="{% static 'blog/images/alert.png' %}" height="50px" width="50px" alt=""></span>
+      <span> <h5 class="head-tips">   Sorry, we  couldn't find any result matching "{{ search_string }}"</h5></span>
+
+      <hr class="tips-row">
+      <div class="tips ">
+        <h4 >Searching tips :</h4>
+        <div class="text-left " >
+          <p>• Check your spelling and try again.</p>
+          <p>• Keep your search simple as our facility works best with shorter description.</p>
+          <p>• Try looking within the tags given below.</p>
+
+          {% for section in sections %}
+            <a href="{% url 'section' section %}" class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</a>
+            {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  {% else %}
+  <!-- Page Content -->
+  <div class="container search-cont container-fluid">
+
+    <div class="row justify-content-center">
+      {% for blog in blogs %}
+          <div class="col-lg-4 col-sm-6 col-auto d-xl-flex align-items-xl-center mb-4">
+            <div class="card h-100">
+              <a class="stretched-link"href="{% url 'posts' blog.post_slug %}">
+              <img class="card-img-top" src={{ blog.post_img.url }} alt="nothing">
+              </a>
+              <div class="card-body">
+                {% for section in blog.get_sections %}
+                <span class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</span>
+                {% endfor %}
+                <h4 class="card-title ">
+                  <a class="card-head" href="{% url 'posts' blog.post_slug %}">
+                    {{ blog.post_title }}
+                  </a>
+                </h4>
+                <div class="host">
+                  <img class="host-image" src={{ blog.author.photo.url }} height="50px" width="50px" border-radius="100%" alt="">
+                  <span class="host-title"> By {{ blog.author }}</span>
+                  <span class="date"> {{ blog.post_date }} </span>
+                </div>
+
+                <p class="card-text">{{ blog.post_desc }}</p>
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+    </div>
+    <!-- /.row -->
+
+
+
+  </div>
+{% endif %}
+{% endblock %}

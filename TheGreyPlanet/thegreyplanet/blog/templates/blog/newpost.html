@@ -1,0 +1,283 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ blog.post_title }} | The Grey Planet{% endblock %}
+
+{% block meta %}
+<meta property="og:type"          content="website">
+<meta property="og:title"         content="{{ blog.post_title }}">
+<meta property="og:description"   content="{{ blog.post_desc }}">
+<meta property="og:image"         content="http://thegreyplanet.com/{{ blog.post_img.url }}">
+<meta property="og:url"           content="http://thegreyplanet.com/posts/{{ blog.post_slug }}">
+{% endblock %}
+{% block css %}
+{% load static %}
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'blog/css/post.css' %}">
+{% endblock %}
+{% block content %}
+  <!-- top section -->
+
+  <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({{ blog.post_img.url }});">
+    <div class="container">
+      <div class="row same-height justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="post-entry text-center">
+            {% for section in blog.get_sections %}
+            <a href="{% url 'section' section %}" class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</a>
+            {% endfor %}
+            <h1 class="mb-4"><a href="#">{{ blog.post_title }}</a></h1>
+            <div class="post-meta align-items-center text-center">
+
+              <img src="{{ blog.author.photo.url }}" class="author-figure" alt="{{ blog.author }}">
+
+              <span class="d-inline-block mt-1">{{ blog.author }}</span>
+              <span>&nbsp;-&nbsp; {{ blog.post_date }}</span>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- top section -->
+
+
+
+
+
+
+
+
+  <section class="site-section py-lg">
+    <div class="container">
+
+      <div class="row blog-entries element-animate">
+
+        <div class="col-md-12 col-lg-8 main-content">
+
+          <div class="post-content-body">
+            {{ blog.post_text|safe }}
+          </div>
+
+<div class="share text-center">
+  <h4 class="share-title">Share this article on:</h4>
+            <div class="share-icons">
+              {% load static %}
+  <!-- Sharingbutton Facebook -->
+  <span>
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}" target="_blank" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/fb.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+
+<!-- Sharingbutton Twitter -->
+<span>
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet?text=The%20Grey%20Planet&url=https%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}" target="_blank" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/tw.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+<!-- Sharingbutton E-Mail -->
+<span>
+<a class="resp-sharing-button__link" href="mailto:?subject=The%20Grey%20Planet&amp;body=https%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}" target="_self" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/gmail.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+
+<!-- Sharingbutton LinkedIn -->
+<span>
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/sharing/share-offsite?url=https%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}" target="_blank" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/ln.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+
+<!-- Sharingbutton Reddit -->
+<span>
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}&amp;resubmit=true&amp;title={{ blog.post_title|urlencode:'' }}" target="_blank" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/rd.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+
+<!-- Sharingbutton WhatsApp -->
+<span>
+<a class="resp-sharing-button__link" href="whatsapp://send?text=*{{ blog.post_title|urlencode:'' }}*%0A_{{ blog.post_desc|urlencode:'' }}_%0Ahttps%3A%2F%2Fthegreyplanet.com%2Fposts%2F{{ blog.post_slug }}" target="_blank" rel="noopener" aria-label="">
+<img class="shareing" src="{% static 'blog/images/share/whatsapp.png' %}" height="40px" width="40px" alt="">
+</a>
+</span>
+
+</div>
+</div>
+
+
+
+        </div>
+
+<hr>
+
+        <!-- END main-content -->
+
+        <div class="col-md-12 col-lg-4 sidebar">
+          {% load static %}
+          <!-- END sidebar-box -->
+          <div class="sidebar-box">
+            <div class="bio text-center">
+              <a target="_blank" href="{{ blog.author.profile_redirect_url }}">
+              <img src={{ blog.author.photo.url }} alt="{{ blog.author }}" class=" profile img-fluid mb-5">
+              </a>
+              <div class="bio-body">
+                <h2>{{ blog.author }}</h2>
+                <!-- Social icons -->
+                <div class="foot-link list-inline text-center">
+                  {% if blog.author.facebook_url %}
+                <a target="_blank" class="btn-floating btn-fb mx-1" href="{{ blog.author.facebook_url }}">
+                  <i class="fab fa-facebook-f"> </i>
+                </a>
+                  {% endif %}
+
+                {% if blog.author.twitter_url %}
+                <a target="_blank" class="btn-floating btn-tw mx-1" href="{{ blog.author.twitter_url }}">
+                  <i class="fab fa-twitter"> </i>
+                </a>
+                {% endif %}
+
+                {% if blog.author.linkedin_url %}
+                <a target="_blank" class="btn-floating btn-li mx-1" href="{{ blog.author.linkedin_url }}">
+                  <i class="fab fa-linkedin-in"> </i>
+                </a>
+                {% endif %}
+
+                {% if blog.author.instagram_url %}
+                <a target="_blank" class="btn-floating" href="{{ blog.author.instagram_url }}">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                {% endif %}
+
+                <a class="btn-floating" href="mailto:{{ blog.author.email }}">
+                  <i class="fas fa-envelope"></i>
+                </a>
+                </div>
+                <!--
+                <div class="icons">
+                  <span><a target="_blank" href="{{ blog.author.facebook_url }}"><img src="{% static 'blog/images/social/facebook.png' %}" alt="Facebook" class="ico-links" height="50px" width="50px"> </a> </span>
+                  <span><a target="_blank" href="{{ blog.author.twitter_url }}"><img src="{% static 'blog/images/social/twitter.png' %}" alt="Twitter" class="ico-links" height="50px" width="50px"> </a> </span>
+                  <span><a target="_blank" href="{{ blog.author.instagram_url }}"><img src="{% static 'blog/images/social/instagram.png' %}" alt="Instagram" class="ico-links" height="50px" width="50px"> </a> </span>
+                  <span><a target="_blank" href="mailto:{{ blog.author.email }}"><img src="{% static 'blog/images/social/email.png' %}" alt="Email" class="ico-links" height="50px" width="50px"> </a> </span>
+                  <span><a target="_blank" href="{{ blog.author.linkedin_url }}"><img src="{% static 'blog/images/social/linkedin.png' %}" alt="Linkedin" class="ico-links" height="50px" width="50px"> </a> </span>
+                </div> -->
+                <p class="mb-4">{{ blog.author.desc }}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!-- END sidebar-box -->
+          <div class="sidebar-box">
+            <h3 class="heading">Popular Posts</h3>
+            <div class="post-entry-sidebar">
+              {% for blog in popular_blogs %}
+              <div class="col-lg-12 mb-4">
+                <div class="card h-100">
+                  <a class="stretched-link" href="{% url 'posts' blog.post_slug %}">
+                    <img class="card-img-top" src="{{ blog.post_img.url }}" alt="">
+                  </a>
+                  <div class="card-body">
+                    {% for section in blog.get_sections %}
+                        <span class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</span>
+                    {% endfor %}
+                    <h4 class="card-title ">
+                      <a class="card-head" href="{% url 'posts' blog.post_slug %}">
+                        {{ blog.post_title }}
+                      </a>
+                    </h4>
+                    <div class="host">
+                      <img class="host-image" src="{{ blog.author.photo.url }}" height="50px" width="50px" border-radius="100%" alt="">
+                      <span class="host-title">By {{ blog.author }}</span>
+                      <span class="date"> - {{ blog.post_date }} </span>
+                    </div>
+
+                    <p class="card-text">{{ blog.post_desc }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- END sidebar-box -->
+
+          <!-- <div class="sidebar-box">
+            <h3 class="heading">Categories</h3>
+            <ul class="categories">
+              <li><a href="#">Food <span>(12)</span></a></li>
+              <li><a href="#">Travel <span>(22)</span></a></li>
+              <li><a href="#">Lifestyle <span>(37)</span></a></li>
+              <li><a href="#">Business <span>(42)</span></a></li>
+              <li><a href="#">Adventure <span>(14)</span></a></li>
+            </ul>
+          </div> -->
+
+
+
+
+          <!-- END sidebar-box -->
+
+          <div class="sidebar-box">
+            <h3 class="heading">More Sections</h3>
+            {% for section in sections %}
+            <a href="{% url 'section' section %}" class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- END sidebar -->
+
+      </div>
+    </div>
+  </section>
+
+  <div class="site-section bg-light">
+    <div class="container">
+
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2>Related Posts</h2>
+        </div>
+      </div>
+
+      <div class="row align-items-stretch retro-layout">
+        {% for blog in related_blogs %}
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <a class="stretched-link" href="{% url 'posts' blog.post_slug %}">
+              <img class="card-img-top" src="{{ blog.post_img.url }}" alt="">
+            </a>
+            <div class="card-body">
+              {% for section in blog.get_sections %}
+              <span class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</span>
+              {% endfor %}
+              <h4 class="card-title ">
+                <a class="card-head" href="{% url 'posts' blog.post_slug %}">
+                  {{ blog.post_title }}
+                </a>
+              </h4>
+              <div class="host">
+                <img class="host-image" src="{{ blog.author.photo.url }}" height="50px" width="50px" border-radius="100%" alt="">
+                <span class="host-title">By {{ blog.author }}</span>
+                <span class="date"> - {{ blog.post_date }} </span>
+              </div>
+
+              <p class="card-text">{{ blog.post_desc }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'blog/base.html' %}
+{% block title %}Contact Us | The Grey Planet{% endblock %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'blog/css/contact.css' %}">
+{% endblock %}
+
+{% block alert %}
+
+{% if message %}
+<div id="newsletter-alert" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: 0px;text-align: center;">
+  <bold>Thanks {{ message.first_name }}, for reaching out to us.</bold> We'll shoot you back an email as soon as possible!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+    <div class="contact">
+      <div class="contact-head text-center">
+        <h1 class="contact-title">Contact us</h1>
+      </div>
+      <div class="contact-content">
+        <h3 class="contact-head">Publish</h3>
+        <p class="contact-p"> If you would like to publish your pieces on our website, you can contact us. Please, mention your enquiry related to publishing in the message. We will share the guidelines as soon as you fill the form.</p>
+          <h3 class="contact-head">Support</h3>
+          <p class="contact-p">If you have problem related to any of the written pieces, please share you concerns with us. You may write them in the message box. We will try to remedy them.
+        </p>
+
+        <h3 class="contact-head">Contact a writer</h3>
+        <p class="contact-p"> We generally don’t share their details with others, except the ones already provided. Although, if you still wish to connect with them, you can give a valid reason in the message box.
+        </p>
+
+        <h3 class="contact-head">Donation</h3>
+        <p class="contact-p"> We will soon be starting the donation process. Still you can contact us.
+        </p>
+
+        <h3 class="contact-head">Advertisement</h3>
+        <p class="contact-p"> Our website does not use third party services for advertisement purposes. If you want to collaborate with us, please do contact with us.
+        </p>
+
+      </div>
+      <div class="row">
+
+
+        <div class="container col-lg-8">
+          <div>
+            <h3 class="get-in">Get in Touch</h3>
+          </div>
+          <div class="contact-content">
+            <div class="contact-details">
+              <form method="post">
+                  {% csrf_token %}
+                <label for="">Tell us your Name *</label>
+                <div class="form-row">
+
+                  <div class="col-md-6 mb-3">
+
+                    <input type="text" class="form-control" name="fname" placeholder="First Name" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+
+                    <input type="text" class="form-control" name="lname" placeholder="Last Name" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label for="validationDefault03">E-mail *</label>
+                    <input type="email" class="form-control" name="contact-email" placeholder="Enter Email" required>
+                  </div>
+
+                </div>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label for="exampleFormControlTextarea1">Message</label>
+                    <textarea placeholder="Enter Your Message..." class="form-control" name="message" rows="5"></textarea>
+                  </div>
+
+                </div>
+
+                <button class="btn btn-outline-light" type="submit">Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="container detailed col-lg-4">
+          <div>
+            <h3 class="get-in text-center"> Details</h3>
+          </div>
+          {% load static %}
+          <div class=" row details">
+            <div class="details-cal col-lg-3"> <img src="{% static 'blog/images/call.png' %}" class="calls" height="50px" width="50px" alt="">
+            </div>
+            <div class="col-lg-8">
+              <h5>Lets Talk</h5>
+              <p class="">+91 9407843720</p>
+            </div>
+
+          </div>
+          <div class=" row details">
+            <div class="details-cal  col-lg-3"> <img src="{% static 'blog/images/mail.png' %}" class="calls" height="50px" width="50px" alt="">
+            </div>
+            <div class="col-lg-8">
+              <h5>General Support</h5>
+              <p class=""><a href="mailto:thegreyplanet.web@gmail.com?subject=General Query" class="email-d">thegreyplanet.web@gmail.com</a></p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}

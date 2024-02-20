@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oh no! | The Grey Planet</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&amp;family=Montserrat:wght@300&amp;family=Quicksand&amp;display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/404.css' %}">
+</head>
+{% load static %}
+<body class="bg-purple">
+
+          <div class="stars">
+              <div class="custom-navbar text-center">
+                <a class="navbar-brand mx-auto navbar-brand-center" href="{% url 'index' %}">
+                    <h1 class="title"> <img src="{% static 'blog/logo/logo-navbar.png' %}" class="nav-logo"alt=""> The Grey Planet</h1>
+                  </a>
+
+              </div>
+              <div class="central-body">
+                  <img class="image-404" src="{% static 'blog/planet404/404.svg' %}" width="300px">
+                  <a href="{% url 'index' %}" class="btn-go-home" target="_self">GO BACK HOME</a>
+              </div>
+              <div class="objects">
+                  <img class="object_rocket" src="{% static 'blog/planet404/rocket.svg' %}" width="40px">
+                  <div class="earth-moon">
+                      <img class="object_earth" src="{% static 'blog/planet404/earth.svg' %}" width="100px">
+                      <img class="object_moon" src="{% static 'blog/planet404/moon.svg' %}" width="80px">
+                  </div>
+                  <div class="box_astronaut">
+                      <img class="object_astronaut" src="{% static 'blog/planet404/astronaut.svg' %}" width="140px">
+                  </div>
+              </div>
+              <div class="glowing_stars">
+                  <div class="star"></div>
+                  <div class="star"></div>
+                  <div class="star"></div>
+                  <div class="star"></div>
+                  <div class="star"></div>
+
+              </div>
+
+          </div>
+
+</body>
+</html>

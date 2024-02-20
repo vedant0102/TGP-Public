@@ -1,0 +1,31 @@
+<div class="container newsletter-subscribe">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Start: Intro -->
+                <div class="intro">
+                    <h2 class="text-center" style="font-family: 'Open Sans', sans-serif;">Subscribe to our Newsletter</h2>
+                    {% load content %}
+                    <p class="text-center" style="font-family: 'Open Sans', sans-serif;">{% content 'newsletter' %}</p>
+                </div>
+                <!-- End: Intro -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="d-table" method="post" style="width: 50%;margin: 0 auto;">
+                    {% csrf_token %}
+                    <div class="form-row row-cols-1 justify-content-center align-items-center">
+                        <div class="col">
+                            <div class="form-group"><input class="form-control" type="text" name="name" id="name" placeholder="Your name (optional)" style="font-family: 'Open Sans', sans-serif;"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Your Email" style="font-family: 'Open Sans', sans-serif;" required=""></div>
+                            <div class="form-group text-center"><button class="btn" id="newsletter-submit" type="submit" style="font-family: 'Open Sans', sans-serif;">Sign me Up!&nbsp;</button></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

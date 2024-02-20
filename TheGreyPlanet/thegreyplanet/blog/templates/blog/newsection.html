@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ section }} | The Grey Planet{% endblock %}
+
+{% block content %}
+
+    <div class="category" style="background-color: {{ section.color }};">
+      <div class="category-head">
+        <h2 class="cate-heading">{{ section }}</h2>
+        <p class="cate-p">{{ section.desc }}</p>
+
+      </div>
+    </div>
+
+      <div class="upper-container site-section container" style="  max-width: 1350px;">
+
+  <!-- Page Content -->
+
+    <h1 class="my-4">Recent Posts</h1>
+
+  <div class="container container-fluid">
+
+    <div class="row justify-content-center">
+      {% for blog in blogs %}
+          <div class="col-lg-4 col-sm-6 col-auto d-xl-flex align-items-xl-center mb-4">
+            <div class="card h-100">
+              <a class="stretched-link"href="{% url 'posts' blog.post_slug %}">
+              <img class="card-img-top" src={{ blog.post_img.url }} alt="nothing">
+              </a>
+              <div class="card-body">
+                {% for section in blog.get_sections %}
+                <span class="badge" style="background-color:{{ section.color }};color:#ffffff;">{{ section|upper }}</span>
+                {% endfor %}
+                <h4 class="card-title ">
+                  <a class="card-head" href="{% url 'posts' blog.post_slug %}">
+                    {{ blog.post_title }}
+                  </a>
+                </h4>
+                <div class="host">
+                  <img class="host-image" src={{ blog.author.photo.url }} height="50px" width="50px" border-radius="100%" alt="">
+                  <span class="host-title"> By {{ blog.author }}</span>
+                  <span class="date"> {{ blog.post_date }} </span>
+                </div>
+
+                <p class="card-text">{{ blog.post_desc }}</p>
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+    <!-- /.row -->
+
+
+
+  </div>
+  <!-- /.container -->
+</div>
+
+{% endblock %}

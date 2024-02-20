@@ -1,0 +1,137 @@
+{% extends 'blog/base.html' %}
+{% block title %}About Us | The Grey Planet{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+  <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url(/static/blog/images/rowboat.jpg);">
+    <div class="container">
+      <div class="row same-height justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="post-entry text-top-left">
+
+            <h1 class="mb-4 about-head"><a href="{% url 'about' %}">About Us</a></h1>
+            <div class="about-content text-left">
+              <p class="about-para">The Grey Planet is an online magazine that reports on the issues, policies, and societal and pop culture phenomena of the day.
+               There is a lot of stuff happening in the world right now. The implications of those events are unimaginable. We bring you the facts of the issues and explain what they mean, and what their implications are.
+             </p>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="heading team-head text-center">
+    <h1>Meet our Team</h1>
+  </div>
+
+
+
+<div class="container container-fluid" >
+  <div class="row justify-content-center about-card">
+    {% for member in members %}
+    <div class="col-lg-3 col-sm-6  d-xl-flex align-items-xl-center mb-4">
+      <div class="card-container">
+        <div class="card h-100">
+          <div class="front">
+            <div class="cover">
+              <img class="about-img-top" src="{{ member.second_photo.url }}">
+            </div>
+            <div class="user">
+              <img class="img-circle" src="{{ member.profile_photo.url }}" style="border-radius: 100%; width: 120px; height: 120px;">
+            </div>
+            <div class="content">
+              <div class="main">
+                <h3 class="name">{{ member }}</h3>
+                <p class="profession">{{ member.title }}</p>
+                <p class="text-center">{{ member.degree }}</p>
+                <p class="text-center">{{ member.college }}</p>
+              </div>
+              <div class="footer-card">
+                <p style="font-size: 20px"><img src="{% static 'blog/images/rotate.png' %}" height="20px" width="20px" alt=""> </p>
+              </div>
+            </div>
+          </div> <!-- end front panel -->
+
+
+          <div class="back">
+            <div class="header">
+              <h5 class="motto">"{{ member.quote }}"</h5>
+            </div>
+            <div class="content">
+              <div class="main">
+                <h4 class="text-center">My Skills</h4>
+                <p class="text-center">{{ member.skills }}</p>
+                <div class="icons">
+                  {% if member.facebook_url %}
+                  <span><a target="_blank" href="{{ member.facebook_url }}"><img src="{% static 'landingpage/images/social/facebook.png' %}" alt="" class="ico-links" height="50px" width="50px"> </a> </span>
+                  {% endif %}
+
+                  {% if member.twitter_url %}
+                  <span><a target="_blank" href="{{ member.twitter_url }}"><img src="{% static 'landingpage/images/social/twitter.png' %}" alt="" class="ico-links" height="50px" width="50px"> </a> </span>
+                  {% endif %}
+
+                  {% if member.instagram_url %}
+                  <span><a target="_blank" href="{{ member.instagram_url }}"><img src="{% static 'landingpage/images/social/instagram.png' %}" alt="" class="ico-links" height="50px" width="50px"> </a> </span>
+                  {% endif %}
+                </div>
+                <div class="icons-2">
+                  {% if member.email %}
+                  <span><a target="_blank" href="mailto:{{ member.email }}"><img src="{% static 'landingpage/images/social/email.png' %}" alt="" class="ico-links" height="50px" width="50px"> </a> </span>
+                  {% endif %}
+
+                  {% if member.linkedin_url %}
+                  <span><a target="_blank" href="{{ member.linkedin_url }}"><img src="{% static 'landingpage/images/social/linkedin.png' %}" alt="" class="ico-links" height="50px" width="50px"> </a> </span>
+                  {% endif %}
+                </div>
+
+              </div>
+
+
+
+            </div> <!-- end back panel -->
+
+          </div> <!-- end card -->
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+
+        </div>
+
+      </div>
+
+{% endblock %}
+
+  <script type="text/javascript">
+    $().ready(function() {
+      $('[rel="tooltip"]').tooltip();
+
+      $('a.scroll-down').click(function(e) {
+        e.preventDefault();
+        scroll_target = $(this).data('href');
+        $('html, body').animate({
+          scrollTop: $(scroll_target).offset().top - 60
+        }, 1000);
+      });
+
+    });
+
+    function rotateCard(btn) {
+      var $card = $(btn).closest('.card-container');
+      console.log($card);
+      if ($card.hasClass('hover')) {
+        $card.removeClass('hover');
+      } else {
+        $card.addClass('hover');
+      }
+    }
+  </script>
+
+  <script src="public/js/index.js" charset="utf-8"></script>

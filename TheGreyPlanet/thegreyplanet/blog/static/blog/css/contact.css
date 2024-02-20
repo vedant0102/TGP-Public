@@ -1,0 +1,58 @@
+/* contact */
+.contact{
+  padding-top: 150px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 50px;
+  background-color: #000;
+  color: #fff;
+}
+.contact-content{
+  padding: 15px 0;
+}
+.contact-head{
+  font-family: 'Montserrat';
+  font-weight: 100;
+  padding: 10px;
+}
+.contact-p{
+  font-family: sans-serif;
+  padding: 10px;
+}
+.get-in{
+  font-family: 'Montserrat';
+  font-weight: 100;
+}
+
+.contact-title{
+  font-size: 3vw;
+  font-style: normal;
+  font-weight: 300;
+  font-family: 'Montserrat';
+}
+.details{
+  padding: 50px;
+}
+.email-d{
+  color:#fff;
+  text-decoration: none;
+}
+.email-d:hover{
+  color:#ddd;
+  text-decoration: none;
+}
+.details-cal{
+margin: auto;
+}
+
+@media screen and (max-width:801px) {
+  .details{
+    padding: 20px !important;
+  }
+
+  .contact-title{
+    font-size: 5vw  !important;
+    font-style: normal;
+    font-weight: 300;
+    font-family: 'Montserrat';
+  }
